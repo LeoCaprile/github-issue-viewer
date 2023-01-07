@@ -1,18 +1,30 @@
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-  dir: './',
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.jest.json',
+      babelConfig: true,
+      diagnostics: false,
+    },
+  },
+  coveragePathIgnorePatterns: ['/node_modules/', '/server/'],
+  setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],
+  coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
+  preset: 'ts-jest',
 });
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
-    // Handle module aliases (this will be automatically configured for you soon)
-    '^@/components/(.*)$': '<rootDir>/components/$1',
-
-    '^@/pages/(.*)$': '<rootDir>/pages/$1',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/test/mocks.ts',
+    '\\.(css|less|scss|html)$': '<rootDir>/test/mocks.ts',
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@hooks$': '<rootDir>/src/hooks',
+    '^@(Server)(.*)$': '<rootDir>/server/$2',
+    '^@([A-Z].*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
 };

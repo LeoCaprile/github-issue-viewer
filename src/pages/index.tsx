@@ -1,25 +1,21 @@
 import Card from '@components/UI/Card';
 import Container from '@components/UI/Container';
-import Search from '@components/UI/Search';
+import Search from '@components/Search';
 import SubTitle from '@components/UI/SubTitle';
 import Title from '@components/UI/Title';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { Response } from './api/github/[owner]/[repo]/issues';
-import { adaptNameToQuery } from 'utils';
+import { adaptNameToQuery } from '@utils';
 import Link from 'next/link';
+import IssueList from '@components/UI/IssueCard';
 
 export default function Home({ issues, error }: Response) {
   return (
     <Container>
       <Card>
-        <Title>Welcome to Github Issue Viewer</Title>
+        <Title className="text-center">Welcome to Github Issue Viewer</Title>
         <Search defaultValue="facebook/react" placeholder="Here write the repo you want see the issues" />
-        {issues &&
-          issues.map((issue) => (
-            <ul key={issue.id}>
-              <li>{issue.title}</li>
-            </ul>
-          ))}
+        {issues && <IssueList issues={issues}></IssueList>}
         {error && (
           <div className="text-center">
             <SubTitle>{error.msg}</SubTitle>

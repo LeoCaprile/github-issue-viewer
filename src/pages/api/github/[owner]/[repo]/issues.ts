@@ -1,7 +1,7 @@
-import { Issue, IssueAdapted } from 'types/Issues.interface';
+import { Issue, IssueAdapted } from 'src/interfaces/Issues.interface';
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { RepoAdapted, RepoSearch } from 'types/repos.interface';
+import { RepoAdapted, RepoSearch } from '@interfaces/repos.interface';
 
 export interface Response {
   issues?: IssueAdapted[];

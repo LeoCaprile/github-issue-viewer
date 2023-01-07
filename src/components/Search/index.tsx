@@ -1,7 +1,6 @@
 import Button from '@components/UI/Button';
-import useDefaultValue from 'hooks';
 import { useRouter } from 'next/router';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 interface Props {
   placeholder: string;
@@ -16,8 +15,15 @@ interface Query {
 
 export default function Search({ placeholder, defaultValue }: Props) {
   const router = useRouter();
+  const [searchValue, setSearchValue] = useState<string>('facebook/react');
   const inputRef = useRef<HTMLInputElement>(null);
-  useDefaultValue(inputRef);
+  const handleSearchValue = ({ target: { value } }: { target: { value: string } }) => setSearchValue(value);
+
+  useEffect(() => {
+    if (router.query.owner && router.query.repo) {
+      setSearchValue(`${router.query.owner}/${router.query.repo}`);
+    }
+  }, [inputRef, router?.query.owner, router?.query.repo]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,8 +40,10 @@ export default function Search({ placeholder, defaultValue }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-row my-5">
+      <label htmlFor="query"></label>
       <input
-        ref={inputRef}
+        value={searchValue}
+        onChange={handleSearchValue}
         required
         defaultValue={defaultValue}
         pattern="[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+"
