@@ -81,6 +81,7 @@ export interface IssueAdapted {
     avatarUrl: string;
   };
   labels: {
+    id: number;
     name: string;
     color: string;
   }[];

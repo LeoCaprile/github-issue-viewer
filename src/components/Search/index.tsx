@@ -4,7 +4,6 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 
 interface Props {
   placeholder: string;
-  defaultValue: string;
 }
 
 interface Query {
@@ -13,7 +12,7 @@ interface Query {
   };
 }
 
-export default function Search({ placeholder, defaultValue }: Props) {
+export default function Search({ placeholder }: Props) {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState<string>('facebook/react');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,10 +44,9 @@ export default function Search({ placeholder, defaultValue }: Props) {
         value={searchValue}
         onChange={handleSearchValue}
         required
-        defaultValue={defaultValue}
         pattern="[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+"
         name="query"
-        className="p-2 flex-1"
+        className="input input-bordered input-accent p-2 flex-1"
         placeholder={placeholder}
         type="search"
       />

@@ -8,16 +8,19 @@ export interface Response {
   error?: Error;
 }
 
-interface Error {
+export interface Error {
   msg: string;
   similar: Array<RepoAdapted>;
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Response>) {
   const { owner, repo, perPage } = req.query;
   try {
-    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues?per_page=${perPage}`, {
-      headers: { 'Authorization': `token ${process.env.GH_TOKEN}` },
-    });
+    const response = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/issues?type=issue&per_page=${perPage}`,
+      {
+        headers: { 'Authorization': `token ${process.env.GH_TOKEN}` },
+      },
+    );
     const issues: Issue[] = await response.json();
     const issueAdapted: IssueAdapted[] = issues.map((issue) => ({
       id: issue.number,
@@ -27,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         avatarUrl: issue.user.avatar_url,
       },
       labels: issue.labels.map((label) => ({
+        id: label.id,
         name: label.name,
         color: label.color,
       })),
@@ -61,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     res.status(404).json({
       error: {
-        msg: 'No issues found :(',
+        msg: 'No repo issues found :(',
         similar: reposAdapted,
       },
     });

@@ -1,38 +1,20 @@
 import Card from '@components/UI/Card';
 import Container from '@components/UI/Container';
 import Search from '@components/Search';
-import SubTitle from '@components/UI/SubTitle';
 import Title from '@components/UI/Title';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { Response } from './api/github/[owner]/[repo]/issues';
-import { adaptNameToQuery } from '@utils';
-import Link from 'next/link';
 import IssueList from '@components/UI/IssueCard';
+import NoIssuesError from '@components/NoIssuesError';
 
 export default function Home({ issues, error }: Response) {
   return (
     <Container>
       <Card>
         <Title className="text-center">Welcome to Github Issue Viewer</Title>
-        <Search defaultValue="facebook/react" placeholder="Here write the repo you want see the issues" />
-        {issues && <IssueList issues={issues}></IssueList>}
-        {error && (
-          <div className="text-center">
-            <SubTitle>{error.msg}</SubTitle>
-            {error.similar.length > 0 && (
-              <strong className="text-teal-200 text-lg">Maybe you mean one of these?</strong>
-            )}
-            <ul className="mt-3 text-lg">
-              {error.similar.map((simil) => (
-                <li key={simil.id}>
-                  <Link className="hover:text-teal-100" href={adaptNameToQuery(simil.name)}>
-                    {simil.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <Search placeholder="Here write the repo you want see the issues" />
+        {issues && <IssueList issues={issues} />}
+        {error && <NoIssuesError error={error} />}
       </Card>
     </Container>
   );

@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Search from '.';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+import Search from '../../components/Search';
+import { useRouter } from '..';
 
 describe('Search Component', () => {
   it('Renders normaly', () => {
@@ -11,7 +9,7 @@ describe('Search Component', () => {
       query: {},
     }));
 
-    render(<Search defaultValue="facebook/react" placeholder="test" />);
+    render(<Search placeholder="test" />);
 
     //Assert
     screen.getByDisplayValue('facebook/react');
@@ -24,7 +22,7 @@ describe('Search Component', () => {
       query: { owner: 'coffe', repo: 'uwu' },
       asPath: '',
     }));
-    const component = render(<Search defaultValue="facebook/react" placeholder="test" />);
+    const component = render(<Search placeholder="test" />);
 
     expect(component).toMatchSnapshot();
   });

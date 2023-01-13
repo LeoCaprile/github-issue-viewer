@@ -3,7 +3,7 @@ import SubTitle from '@components/UI/SubTitle';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import Logo404 from 'public/404.avif';
+import Logo404 from '@public/404.avif';
 export default function Custom404() {
   return (
     <Container>

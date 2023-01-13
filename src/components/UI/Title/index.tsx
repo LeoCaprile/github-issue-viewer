@@ -6,7 +6,7 @@ interface Props extends HTMLProps<HTMLHeadingElement> {
 
 export default function Title({ children, className, ...props }: Props) {
   return (
-    <h1 {...props} className={'text-3xl ' + className}>
+    <h1 aria-roledescription="Title" {...props} className={'text-3xl ' + className}>
       {children}
     </h1>
   );

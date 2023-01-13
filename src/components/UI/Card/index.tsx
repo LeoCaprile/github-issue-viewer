@@ -5,5 +5,9 @@ interface Props {
 }
 
 export default function Card({ children }: Props) {
-  return <div className="p-5 m-3 w-full border-teal-300 border-2 rounded-md">{children}</div>;
+  return (
+    <div className="card">
+      <div className="card-body">{children}</div>
+    </div>
+  );
 }
