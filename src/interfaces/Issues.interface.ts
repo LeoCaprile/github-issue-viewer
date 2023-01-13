@@ -61,9 +61,9 @@ export interface Issue {
   assignees: unknown[];
   milestone?: unknown;
   comments: number;
-  created_at: Date;
-  updated_at: Date;
-  closed_at?: Date | null;
+  created_at: string;
+  updated_at: string;
+  closed_at?: string | null;
   author_association: string;
   active_lock_reason?: unknown;
   body: string;
@@ -86,8 +86,8 @@ export interface IssueAdapted {
     color: string;
   }[];
   state: string;
-  createdAt: Date;
-  closedAt: Date | null | undefined;
+  createdAt: string;
+  closedAt: string | null | undefined;
   body: string;
   reactions: {
     totalCount: number;
