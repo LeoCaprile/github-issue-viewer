@@ -6,7 +6,7 @@ interface Props {
 
 export default function Card({ children }: Props) {
   return (
-    <div className="card">
+    <div className="card bg-gray-800">
       <div className="card-body">{children}</div>
     </div>
   );

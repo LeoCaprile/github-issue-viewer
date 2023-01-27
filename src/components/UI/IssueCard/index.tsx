@@ -9,7 +9,7 @@ export default function IssueList({ issues }: Props) {
   return (
     <ul className="w-[45rem] flex flex-col gap-5">
       {issues.map((issue) => (
-        <li className=" hover:bg-teal-800 cursor-pointer p-3" key={issue.id}>
+        <li className=" hover:bg-teal-800 cursor-pointer p-6" key={issue.id}>
           <article>
             <div className="flex">
               <div className="flex-1 mr-5">
