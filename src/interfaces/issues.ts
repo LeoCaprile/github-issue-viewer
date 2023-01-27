@@ -73,7 +73,7 @@ export interface Issue {
   state_reason?: unknown;
 }
 
-export interface IssueAdapted {
+export interface IssuesAdapted {
   id: number;
   title: string;
   user: {

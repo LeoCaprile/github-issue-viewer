@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { IssueAdapted } from 'src/interfaces/Issues.interface';
+import { IssuesAdapted } from '@interfaces/issues';
 
 interface Props {
-  issues: IssueAdapted[];
+  issues: IssuesAdapted[];
 }
 
 export default function IssueList({ issues }: Props) {

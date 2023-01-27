@@ -1,10 +1,9 @@
-import { Issue, IssueAdapted } from 'src/interfaces/Issues.interface';
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { Issue, IssuesAdapted } from '@interfaces/issues';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { RepoAdapted, RepoSearch } from '@interfaces/repos.interface';
+import { RepoAdapted, RepoSearch } from '@interfaces/repos';
 
 export interface Response {
-  issues?: IssueAdapted[];
+  issues?: IssuesAdapted[];
   error?: Error;
 }
 
@@ -22,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       },
     );
     const issues: Issue[] = await response.json();
-    const issueAdapted: IssueAdapted[] = issues.map((issue) => ({
+    const issueAdapted: IssuesAdapted[] = issues.map((issue) => ({
       id: issue.number,
       title: issue.title,
       user: {
