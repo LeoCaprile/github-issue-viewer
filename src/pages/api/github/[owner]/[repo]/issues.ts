@@ -1,9 +1,12 @@
 import { Issue, IssuesAdapted } from '@interfaces/issues';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { RepoAdapted, RepoSearch } from '@interfaces/repos';
+import parse, { Links } from 'parse-link-header';
+import { Meta } from '@interfaces/pagination';
 
 export interface Response {
   issues?: IssuesAdapted[];
+  meta?: Meta;
   error?: Error;
 }
 
@@ -12,14 +15,18 @@ export interface Error {
   similar: Array<RepoAdapted>;
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Response>) {
-  const { owner, repo, perPage } = req.query;
+  const { owner, repo, perPage, page } = req.query;
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/issues?type=issue&per_page=${perPage}`,
+      `https://api.github.com/repos/${owner}/${repo}/issues?type=issue&per_page=${perPage}&page=${page ?? 1}`,
       {
         headers: { 'Authorization': `token ${process.env.GH_TOKEN}` },
       },
     );
+
+    const pagination = response.headers.get('link');
+    const parsedPagination: Links | null = parse(pagination);
+
     const issues: Issue[] = await response.json();
     const issueAdapted: IssuesAdapted[] = issues.map((issue) => ({
       id: issue.number,
@@ -51,6 +58,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }));
     res.status(200).json({
       issues: issueAdapted,
+      meta: {
+        prevPage: Number(parsedPagination?.prev?.page) ?? null,
+        currentPage: Number(page) ?? 1,
+        nextPage: Number(parsedPagination?.next?.page) ?? null,
+      },
     });
   } catch {
     const response = await fetch(`https://api.github.com/search/repositories?q=${repo}+user:${owner}&per_page=5`);

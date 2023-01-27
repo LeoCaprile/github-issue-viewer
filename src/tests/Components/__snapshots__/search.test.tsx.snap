@@ -12,7 +12,7 @@ exports[`Search Component Changes search value when query values change 1`] = `
           for="query"
         />
         <input
-          class="p-2 flex-1"
+          class="input input-bordered input-accent p-2 flex-1"
           name="query"
           pattern="[a-zA-Z0-9-]+\\/[a-zA-Z0-9-]+"
           placeholder="test"
@@ -21,7 +21,7 @@ exports[`Search Component Changes search value when query values change 1`] = `
           value="coffe/uwu"
         />
         <button
-          class="border-white border-2 p-2 rounded-lg mx-3"
+          class="btn mx-3"
         >
           Search
         </button>
@@ -36,7 +36,7 @@ exports[`Search Component Changes search value when query values change 1`] = `
         for="query"
       />
       <input
-        class="p-2 flex-1"
+        class="input input-bordered input-accent p-2 flex-1"
         name="query"
         pattern="[a-zA-Z0-9-]+\\/[a-zA-Z0-9-]+"
         placeholder="test"
@@ -45,7 +45,7 @@ exports[`Search Component Changes search value when query values change 1`] = `
         value="coffe/uwu"
       />
       <button
-        class="border-white border-2 p-2 rounded-lg mx-3"
+        class="btn mx-3"
       >
         Search
       </button>

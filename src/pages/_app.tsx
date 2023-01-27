@@ -1,9 +1,24 @@
 import '@styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import NextNProgress from 'nextjs-progressbar';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const {
+    query: { owner, repo, page },
+  } = router;
+  if (!owner && !repo && !page) {
+    router.push({
+      pathname: '/',
+      query: {
+        owner: 'react',
+        repo: 'facebook',
+        page: 1,
+      },
+    });
+  }
   return (
     <>
       <Head>

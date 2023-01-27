@@ -7,6 +7,7 @@ specifiers:
   '@testing-library/user-event': 14.2.0
   '@types/jest': ^29.2.5
   '@types/node': 18.11.9
+  '@types/parse-link-header': ^2.0.0
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
   '@typescript-eslint/eslint-plugin': ^5.13.0
@@ -30,6 +31,7 @@ specifiers:
   markdown-to-jsx: ^7.1.8
   next: 13.0.1
   nextjs-progressbar: ^0.0.16
+  parse-link-header: ^2.0.0
   postcss: ^8.4.19
   react: 18.2.0
   react-dom: 18.2.0
@@ -47,6 +49,7 @@ dependencies:
   markdown-to-jsx: 7.1.8_react@18.2.0
   next: 13.0.1_pjwopsidmaokadturxaafygjp4
   nextjs-progressbar: 0.0.16_next@13.0.1+react@18.2.0
+  parse-link-header: 2.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -55,6 +58,7 @@ devDependencies:
   '@testing-library/react': 13.2.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 14.2.0_ua4wuun3fnehcjqtqj2e2ldgpe
   '@types/jest': 29.2.5
+  '@types/parse-link-header': 2.0.0
   '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
   '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
   autoprefixer: 10.4.13_postcss@8.4.21
@@ -1153,6 +1157,10 @@ packages:
   /@types/nprogress/0.2.0:
     resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
     dev: false
+
+  /@types/parse-link-header/2.0.0:
+    resolution: {integrity: sha512-KbqcQLdRaawDOfXnwqr6nvhe1MV+Uv/Ww+ViSx7Ujgw9X5qCgObLP52B1ZSJqZD8FK1y/4o+bJQTUrZOynegcg==}
+    dev: true
 
   /@types/parse5/6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
@@ -4943,6 +4951,12 @@ packages:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
     dev: true
+
+  /parse-link-header/2.0.0:
+    resolution: {integrity: sha512-xjU87V0VyHZybn2RrCX5TIFGxTVZE6zqqZWMPlIKiSKuWh/X5WZdt+w1Ki1nXB+8L/KtL+nZ4iq+sfI6MrhhMw==}
+    dependencies:
+      xtend: 4.0.2
+    dev: false
 
   /parse-passwd/1.0.0:
     resolution: {integrity: sha512-1Y1A//QUXEZK7YKz+rD9WydcE1+EuPr6ZBgKecAB8tmoW6UFv0NREVJe1p+jRxtThkcbbKkfwIbWJe/IeE6m2Q==}

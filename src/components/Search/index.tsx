@@ -33,6 +33,7 @@ export default function Search({ placeholder }: Props) {
       query: {
         owner: owner,
         repo: repo,
+        page: 1,
       },
     });
   };
