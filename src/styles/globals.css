@@ -5,8 +5,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   height: 100vh;
   width: 100vw;
 }
@@ -21,16 +21,7 @@ a {
 }
 
 .rainbow-text {
-  background-image: linear-gradient(
-    to left,
-    violet,
-    indigo,
-    blue,
-    green,
-    yellow,
-    orange,
-    red
-  );
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;

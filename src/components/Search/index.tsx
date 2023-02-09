@@ -14,6 +14,7 @@ interface Query {
 
 export default function Search({ placeholder }: Props) {
   const router = useRouter();
+
   const [searchValue, setSearchValue] = useState<string>('facebook/react');
   const inputRef = useRef<HTMLInputElement>(null);
   const handleSearchValue = ({ target: { value } }: { target: { value: string } }) => setSearchValue(value);
@@ -29,10 +30,8 @@ export default function Search({ placeholder }: Props) {
     const elements = event.currentTarget.elements as typeof event.currentTarget.elements & Query;
     const [owner, repo] = elements.query.value.split('/');
     router.push({
-      pathname: '/',
+      pathname: `/${owner}/${repo}`,
       query: {
-        owner: owner,
-        repo: repo,
         page: 1,
       },
     });
