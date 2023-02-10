@@ -18,6 +18,7 @@ specifiers:
   commitizen-emoji: ^1.0.5
   cz-conventional-changelog: ^3.3.0
   daisyui: ^2.46.1
+  dayjs: ^1.11.7
   eslint: '>=8.0.0'
   eslint-config-airbnb-typescript: ^17.0.0
   eslint-config-next: ^13.0.2
@@ -52,6 +53,7 @@ dependencies:
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
   daisyui: 2.46.1_by5iqycgvtroytm54ytclj4zzi
+  dayjs: 1.11.7
   eslint-plugin-import: 2.25.3_qdjeohovcytra7xto5vgmxssaq
   markdown-to-jsx: 7.1.9_react@18.2.0
   next: 13.0.1_pjwopsidmaokadturxaafygjp4
@@ -2221,6 +2223,10 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

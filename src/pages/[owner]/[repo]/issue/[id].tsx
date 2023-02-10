@@ -9,7 +9,10 @@ import { CodeProps } from 'react-markdown/lib/ast-to-react';
 import Container from '@components/UI/Container';
 import Card from '@components/UI/Card';
 import { useRouter } from 'next/router';
-
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import Reactions from '@components/UI/Reactions';
+dayjs.extend(relativeTime);
 interface Props {
   issue: IssuesAdapted;
 }
@@ -20,9 +23,15 @@ export default function IssuePage({ issue }: Props) {
     <Container>
       <Card>
         <div className="w-[75ch] p-2">
-          <button onClick={router.back} className="btn btn-xs mb-5">
-            « Go back
-          </button>
+          <div className="flex justify-between">
+            <button onClick={router.back} className="btn btn-xs mb-5">
+              « Go back
+            </button>
+            <div className="flex gap-5">
+              <Reactions reactions={issue.reactions}></Reactions>
+              <div className="badge badge-accent badge-outline">{dayjs(issue.createdAt).fromNow()}</div>
+            </div>
+          </div>
           <ReactMarkdown
             className="markdown-body"
             remarkPlugins={[remarkGfm]}

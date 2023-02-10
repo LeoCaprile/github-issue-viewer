@@ -4,7 +4,7 @@ import Search from '@components/Search';
 import Title from '@components/UI/Title';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { Response } from '../../api/github/[owner]/[repo]/issues';
-import IssueList from '@components/UI/IssueCard';
+import IssueCard from '@components/UI/IssueCard';
 import NoIssuesError from '@components/NoIssuesError';
 import Pagination from '@components/Pagination';
 
@@ -14,7 +14,7 @@ export default function IssuesPage({ issues, meta, error }: Response) {
       <Card>
         <Title className="text-center">Welcome to Github Issue Viewer</Title>
         <Search placeholder="Here write the repo you want see the issues" />
-        {issues && <IssueList issues={issues} />}
+        {issues && <IssueCard issues={issues} />}
         {error && <NoIssuesError error={error} />}
         {meta && <Pagination meta={meta} />}
       </Card>
