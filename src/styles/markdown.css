@@ -34,7 +34,6 @@
     --color-fg-default: #c9d1d9;
     --color-fg-muted: #8b949e;
     --color-fg-subtle: #484f58;
-    --color-canvas-subtle: #161b22;
     --color-border-default: #30363d;
     --color-border-muted: #21262d;
     --color-neutral-muted: rgba(110, 118, 129, 0.4);
@@ -212,6 +211,8 @@
 .markdown-body samp {
   font-family: monospace, monospace;
   font-size: 1em;
+  border: 1px solid rgb(25, 24, 24);
+  padding: 0 !important;
 }
 
 .markdown-body figure {

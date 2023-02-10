@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Bungee Inline
+- Font Author: Copyright 2008 The Bungee Project Authors (david@djr.com)
+- Font Source: http://fonts.gstatic.com/s/bungeeinline/v11/Gg8zN58UcgnlCweMrih332VuDGJ1-FEglsc.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

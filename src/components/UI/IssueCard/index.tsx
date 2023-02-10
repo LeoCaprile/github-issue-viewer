@@ -14,7 +14,7 @@ export default function IssueList({ issues }: Props) {
   } = router;
 
   return (
-    <ul className="w-[45rem] flex flex-col gap-5">
+    <ul className="w-[75ch] flex flex-col gap-5">
       {issues.map((issue) => (
         <Link key={issue.id} href={`/${owner}/${repo}/issue/${issue.id}`}>
           <li className=" hover:bg-teal-800 cursor-pointer p-6">
