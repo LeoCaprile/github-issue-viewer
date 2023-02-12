@@ -215,6 +215,10 @@
   padding: 0 !important;
 }
 
+.markdown-body pre > div {
+  margin: 0 !important;
+}
+
 .markdown-body figure {
   margin: 1em 40px;
 }
