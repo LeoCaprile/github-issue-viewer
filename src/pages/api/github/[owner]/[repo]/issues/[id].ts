@@ -1,8 +1,11 @@
 import { Issue, IssuesAdapted } from '@interfaces/issues';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+interface IssueDetail extends IssuesAdapted {
+  commentsUrl: string;
+}
 export interface Response {
-  issue?: IssuesAdapted;
+  issue?: IssueDetail;
   error?: Error;
 }
 
@@ -18,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const issues: Issue = await response.json();
 
-    const issueAdapted: IssuesAdapted = {
+    const issueAdapted: IssueDetail = {
       id: issues.number,
       title: issues.title,
       user: {
@@ -30,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         name: label.name,
         color: label.color,
       })),
+      commentsUrl: issues.comments_url,
       state: issues.state,
       createdAt: issues.created_at,
       closedAt: issues.closed_at,

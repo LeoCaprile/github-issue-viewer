@@ -41,6 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         color: label.color,
       })),
       state: issue.state,
+      comments: issue.comments,
       createdAt: issue.created_at,
       closedAt: issue.closed_at,
       body: issue.body,

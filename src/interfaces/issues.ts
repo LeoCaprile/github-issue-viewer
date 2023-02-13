@@ -86,6 +86,7 @@ export interface IssuesAdapted {
     color: string;
   }[];
   state: string;
+  comments: number;
   createdAt: string;
   closedAt: string | null | undefined;
   body: string;

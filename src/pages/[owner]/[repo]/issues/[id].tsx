@@ -22,7 +22,7 @@ export default function IssuePage({ issue }: Props) {
   return (
     <Container>
       <Card>
-        <div className="w-[75ch] p-2">
+        <div className="flex flex-col lg:w-[75ch] lg:gap-5 sm:w-full xs:w-full sm:gap-1 ">
           <div className="flex justify-between">
             <button onClick={router.back} className="btn btn-xs mb-5">
               « Go back
