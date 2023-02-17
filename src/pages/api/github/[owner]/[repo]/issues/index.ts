@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { RepoAdapted, RepoSearch } from '@interfaces/repos';
 import parse, { Links } from 'parse-link-header';
 import { Meta } from '@interfaces/pagination';
+import { adaptIssues } from '@utils';
 
 export interface Response {
   issues?: IssuesAdapted[];
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { owner, repo, perPage, page } = req.query;
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/issues?type=issue&per_page=${perPage}&page=${page ?? 1}`,
+      `https://api.github.com/repos/${owner}/${repo}/issues?type=issues&per_page=${perPage}&page=${page ?? 1}`,
       {
         headers: { 'Authorization': `token ${process.env.GH_TOKEN}` },
       },
@@ -28,37 +29,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const parsedPagination: Links | null = parse(pagination);
 
     const issues: Issue[] = await response.json();
-    const issueAdapted: IssuesAdapted[] = issues.map((issue) => ({
-      id: issue.number,
-      title: issue.title,
-      user: {
-        userName: issue.user.login,
-        avatarUrl: issue.user.avatar_url,
-      },
-      labels: issue.labels.map((label) => ({
-        id: label.id,
-        name: label.name,
-        color: label.color,
-      })),
-      state: issue.state,
-      comments: issue.comments,
-      createdAt: issue.created_at,
-      closedAt: issue.closed_at,
-      body: issue.body,
-      reactions: {
-        totalCount: issue.reactions.total_count,
-        thumbsUp: issue.reactions['+1'],
-        thumbsDown: issue.reactions['-1'],
-        laugh: issue.reactions.laugh,
-        hooray: issue.reactions.hooray,
-        confused: issue.reactions.confused,
-        heart: issue.reactions.heart,
-        rocket: issue.reactions.rocket,
-        eyes: issue.reactions.eyes,
-      },
-    }));
+
     res.status(200).json({
-      issues: issueAdapted,
+      issues: adaptIssues(issues),
       meta: {
         prevPage: Number(parsedPagination?.prev?.page) ?? null,
         currentPage: Number(page) ?? 1,

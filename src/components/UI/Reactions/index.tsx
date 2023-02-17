@@ -8,7 +8,7 @@ interface Props {
 export default function Reactions({ reactions }: Props) {
   const { confused, eyes, heart, hooray, laugh, rocket, thumbsDown, thumbsUp } = reactions;
   return (
-    <div>
+    <div className="flex gap-1">
       {Boolean(thumbsUp) && (
         <div className="badge">
           <Image

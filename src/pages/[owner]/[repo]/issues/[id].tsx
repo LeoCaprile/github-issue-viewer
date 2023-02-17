@@ -1,17 +1,14 @@
-import { IssuesAdapted } from '@interfaces/issues';
 import { GetServerSidePropsContext } from 'next';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { CodeProps } from 'react-markdown/lib/ast-to-react';
 import Container from '@components/UI/Container';
 import Card from '@components/UI/Card';
 import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Reactions from '@components/UI/Reactions';
+import MarkDown from '@components/UI/MarkDown';
+import UserMetaData from '@components/UI/UserMetaData';
+import CommentList from '@components/CommentList';
+import { IssuesAdapted } from '@interfaces/issues';
 dayjs.extend(relativeTime);
 interface Props {
   issue: IssuesAdapted;
@@ -21,40 +18,26 @@ export default function IssuePage({ issue }: Props) {
   const router = useRouter();
   return (
     <Container>
-      <Card>
-        <div className="flex flex-col lg:w-[75ch] lg:gap-5 sm:w-full xs:w-full sm:gap-1 ">
-          <div className="flex justify-between">
-            <button onClick={router.back} className="btn btn-xs mb-5">
-              « Go back
-            </button>
-            <div className="flex gap-5">
-              <Reactions reactions={issue.reactions}></Reactions>
-              <div className="badge badge-accent badge-outline">{dayjs(issue.createdAt).fromNow()}</div>
+      <div className="lg:w-[75ch] sm:w-full xs:w-full">
+        <Card>
+          <div className="flex flex-col lg:gap-5 sm:gap-1 ">
+            <div className="flex justify-between">
+              <button onClick={router.back} className="btn btn-xs mb-5">
+                « Go back
+              </button>
+              <div className="flex gap-5">
+                <Reactions reactions={issue.reactions} />
+              </div>
             </div>
+            <h1 className="lg:text-2xl sm:text-xl">
+              <strong>#{issue.id}</strong> <strong>{issue.title}</strong>
+            </h1>
+            <UserMetaData username={issue.user.userName} date={issue.createdAt} />
+            <MarkDown body={issue.body}></MarkDown>
           </div>
-          <ReactMarkdown
-            className="markdown-body"
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            components={{
-              code({ inline, className, children, ...props }: CodeProps) {
-                const match = /language-(\w+)/.exec(className || '');
-                return !inline && match ? (
-                  <SyntaxHighlighter language={match[1]} PreTag="div" {...props} style={oneDark}>
-                    {String(children).replace(/\n$/, '')}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {issue.body}
-          </ReactMarkdown>
-        </div>
-      </Card>
+        </Card>
+        <CommentList issueId={issue.id}></CommentList>
+      </div>
     </Container>
   );
 }

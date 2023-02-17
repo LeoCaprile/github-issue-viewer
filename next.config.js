@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  publicRuntimeConfig: {
+    GH_TOKEN: process.env.GH_TOKEN,
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {

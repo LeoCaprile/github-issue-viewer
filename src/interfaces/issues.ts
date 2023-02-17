@@ -86,9 +86,33 @@ export interface IssuesAdapted {
     color: string;
   }[];
   state: string;
+  commentsUrl: string;
   comments: number;
   createdAt: string;
   closedAt: string | null | undefined;
+  body: string;
+  reactions: {
+    totalCount: number;
+    thumbsUp: number;
+    thumbsDown: number;
+    laugh: number;
+    hooray: number;
+    confused: number;
+    heart: number;
+    rocket: number;
+    eyes: number;
+  };
+}
+
+export interface CommentAdapted {
+  id: number;
+  title: string;
+  user: {
+    userName: string;
+    avatarUrl: string;
+  };
+  createdAt: string;
+  author: boolean;
   body: string;
   reactions: {
     totalCount: number;
