@@ -11,7 +11,11 @@ const CommentList = ({ issueId }: Props) => {
   const {
     query: { owner, repo },
   } = useRouter();
-  const { data, error, hasNextPage, fetchNextPage, isFetchingNextPage } = useCommentsList({ issueId, owner, repo });
+  const { data, isLoading, error, hasNextPage, fetchNextPage, isFetchingNextPage } = useCommentsList({
+    issueId,
+    owner,
+    repo,
+  });
 
   const comments = data?.pages.flatMap((item) => item.comments);
 
@@ -29,6 +33,12 @@ const CommentList = ({ issueId }: Props) => {
         />
       ))}
       <div className="flex flex-col justify-center">
+        {isLoading && (
+          <div
+            className="self-center mt-2 animate-spin w-8 h-8 border-b-transparent border-4 border-teal-700 rounded-full"
+            role="status"
+          />
+        )}
         {hasNextPage && (
           <button className="btn btn-outline mt-2" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
             {isFetchingNextPage ? 'Loading more...' : 'Load more comments'}
