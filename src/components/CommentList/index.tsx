@@ -1,4 +1,5 @@
 import Comment from '@components/UI/Comment';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useCommentsList } from 'src/hooks/useCommentList';
 
@@ -7,7 +8,10 @@ interface Props {
 }
 
 const CommentList = ({ issueId }: Props) => {
-  const { data, error, hasNextPage, fetchNextPage, isFetchingNextPage } = useCommentsList({ issueId });
+  const {
+    query: { owner, repo },
+  } = useRouter();
+  const { data, error, hasNextPage, fetchNextPage, isFetchingNextPage } = useCommentsList({ issueId, owner, repo });
 
   const comments = data?.pages.flatMap((item) => item.comments);
 

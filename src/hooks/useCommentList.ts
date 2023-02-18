@@ -11,10 +11,14 @@ const {
 interface FetchCommentsProps {
   pageParam: number;
   issueId: number;
+  owner: string | string[] | undefined;
+  repo: string | string[] | undefined;
 }
 
 interface UseCommentsListProps {
   issueId: number;
+  owner: string | string[] | undefined;
+  repo: string | string[] | undefined;
 }
 
 interface InfiniteQueryProps {
@@ -24,9 +28,9 @@ interface InfiniteQueryProps {
 
 type QueryKey = ['comments', number, number];
 
-const fetchComments = async ({ pageParam = 1, issueId }: FetchCommentsProps) => {
+const fetchComments = async ({ pageParam = 1, issueId, owner, repo }: FetchCommentsProps) => {
   const response = await fetch(
-    `https://api.github.com/repos/facebook/react/issues/${issueId}/comments?per_page=3&page=${pageParam}`,
+    `https://api.github.com/repos/${owner}/${repo}/issues/${issueId}/comments?per_page=3&page=${pageParam}`,
     {
       headers: { 'Authorization': `token ${GH_TOKEN}` },
     },
@@ -38,10 +42,10 @@ const fetchComments = async ({ pageParam = 1, issueId }: FetchCommentsProps) => 
   return { comments: adaptComments(parsed), nextPage: parsedPagination?.next?.page };
 };
 
-const useCommentsList = ({ issueId }: UseCommentsListProps) => {
+const useCommentsList = ({ issueId, owner, repo }: UseCommentsListProps) => {
   return useInfiniteQuery<InfiniteQueryProps, QueryKey>({
     queryKey: ['projects'],
-    queryFn: ({ pageParam }) => fetchComments({ issueId, pageParam }),
+    queryFn: ({ pageParam }) => fetchComments({ issueId, pageParam, owner, repo }),
     getNextPageParam: ({ nextPage }) => {
       if (nextPage) {
         return nextPage;
