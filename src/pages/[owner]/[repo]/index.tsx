@@ -7,12 +7,17 @@ import { Response } from '../../api/github/[owner]/[repo]/issues';
 import IssueCard from '@components/UI/IssueCard';
 import NoIssuesError from '@components/NoIssuesError';
 import Pagination from '@components/Pagination';
+import GithubLogo from '@public/images/25231.png';
+import Image from 'next/image';
 
 export default function IssuesPage({ issues, meta, error }: Response) {
   return (
     <Container>
       <Card>
-        <Title className="text-center">Welcome to Github Issue Viewer</Title>
+        <div className="flex gap-5 items-center justify-center">
+          <Image width={50} height={50} src={GithubLogo} alt="github" />
+          <Title className="text-center">Welcome to Github Issue Viewer</Title>
+        </div>
         <Search placeholder="Here write the repo you want see the issues" />
         {issues && <IssueCard issues={issues} />}
         {error && <NoIssuesError error={error} />}
