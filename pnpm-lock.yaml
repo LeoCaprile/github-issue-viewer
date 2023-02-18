@@ -52,6 +52,7 @@ specifiers:
 dependencies:
   '@next/eslint-plugin-next': 13.1.2
   '@tanstack/react-query': 4.24.6_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/react-query-devtools': 4.24.6_r32zdxeb7iubg3qfkymfterewe
   '@types/node': 18.11.9
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
@@ -72,7 +73,6 @@ dependencies:
   remark-gfm: 3.0.1
 
 devDependencies:
-  '@tanstack/react-query-devtools': 4.24.6_r32zdxeb7iubg3qfkymfterewe
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 13.2.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 14.2.0_ua4wuun3fnehcjqtqj2e2ldgpe
@@ -1021,10 +1021,11 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       remove-accents: 0.4.2
-    dev: true
+    dev: false
 
   /@tanstack/query-core/4.24.6:
     resolution: {integrity: sha512-Tfru6YTDTCpX7dKVwHp/sosw/dNjEdzrncduUjIkQxn7n7u+74HT2ZrGtwwrU6Orws4x7zp3FKRqBPWVVhpx9w==}
+    dev: false
 
   /@tanstack/react-query-devtools/4.24.6_r32zdxeb7iubg3qfkymfterewe:
     resolution: {integrity: sha512-d8CN4ZTtLkdCNi9x4Hogma0fdhlv7ckknv/RLuV4nbUciUoZEvhg1cI0+vp/1aY4W3jq9vH0BD/eUQKecgY15Q==}
@@ -1039,7 +1040,7 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       superjson: 1.12.2
       use-sync-external-store: 1.2.0_react@18.2.0
-    dev: true
+    dev: false
 
   /@tanstack/react-query/4.24.6_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-pbJUVZCS4pcXS0kZiY+mVJ01ude0GrH5OXT2g9whcqSveRG/YVup/XdA9NdRpSMGkP2HxDRxxRNsTXkniWeIIA==}
@@ -1057,6 +1058,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
 
   /@testing-library/dom/8.19.1:
     resolution: {integrity: sha512-P6iIPyYQ+qH8CvGauAqanhVnjrnRe0IZFSYCeGkSRW9q3u8bdVn2NPI+lasFyVsEQn1J/IFmp5Aax41+dAP9wg==}
@@ -2149,7 +2151,7 @@ packages:
     engines: {node: '>=12.13'}
     dependencies:
       is-what: 4.1.8
-    dev: true
+    dev: false
 
   /cosmiconfig-typescript-loader/4.3.0_dlqlkqpkktdkc7bk6h6egzrksq:
     resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
@@ -4005,7 +4007,7 @@ packages:
   /is-what/4.1.8:
     resolution: {integrity: sha512-yq8gMao5upkPoGEU9LsB2P+K3Kt8Q3fQFCGyNCWOAnJAMzEXVV9drYb0TXr42TTliLLhKIBvulgAXgtLLnwzGA==}
     engines: {node: '>=12.13'}
-    dev: true
+    dev: false
 
   /is-windows/1.0.2:
     resolution: {integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==}
@@ -6127,7 +6129,7 @@ packages:
 
   /remove-accents/0.4.2:
     resolution: {integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==}
-    dev: true
+    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -6600,7 +6602,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       copy-anything: 3.0.3
-    dev: true
+    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -6994,6 +6996,7 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
