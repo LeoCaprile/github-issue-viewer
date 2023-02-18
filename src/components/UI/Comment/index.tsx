@@ -3,6 +3,7 @@ import MarkDown from '../MarkDown';
 import Reactions from '../Reactions';
 import UserMetaData from '../UserMetaData';
 import { IssuesAdapted } from '@interfaces/issues';
+import Image from 'next/image';
 
 interface Props {
   avatarUrl: string;
@@ -21,7 +22,7 @@ const Comment = ({ avatarUrl, body, createdAt, author, reactions, userName }: Pr
           <div
             className={'w-10 rounded-full ' + (author ? 'ring ring-primary ring-offset-base-100 ring-offset-2' : '')}
           >
-            <img src={avatarUrl} />
+            <Image width={20} height={20} quality={75} alt={userName} src={avatarUrl} />
           </div>
         </div>
       </div>
