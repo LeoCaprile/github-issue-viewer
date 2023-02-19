@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'github.githubassets.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
+      },
     ],
   },
 };

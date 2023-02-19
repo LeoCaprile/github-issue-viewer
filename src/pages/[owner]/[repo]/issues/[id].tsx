@@ -26,17 +26,17 @@ export default function IssuePage({ issue }: Props) {
                 « Go back
               </button>
               <div className="flex gap-5">
-                <Reactions reactions={issue.reactions} />
+                <Reactions reactions={issue?.reactions} />
               </div>
             </div>
             <h1 className="lg:text-2xl sm:text-xl">
-              <strong>#{issue.id}</strong> <strong>{issue.title}</strong>
+              <strong>#{issue?.id}</strong> <strong>{issue?.title}</strong>
             </h1>
-            <UserMetaData username={issue.user.userName} date={issue.createdAt} />
-            <MarkDown body={issue.body}></MarkDown>
+            <UserMetaData username={issue?.user.userName} date={issue?.createdAt} />
+            <MarkDown body={issue?.body}></MarkDown>
           </div>
         </Card>
-        <CommentList issueId={issue.id}></CommentList>
+        <CommentList issueId={issue?.id}></CommentList>
       </div>
     </Container>
   );
