@@ -3,17 +3,28 @@ import Container from '@components/UI/Container';
 import Search from '@components/Search';
 import Title from '@components/UI/Title';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { Response } from '../../api/github/[owner]/[repo]/issues';
 import IssueCard from '@components/UI/IssueCard';
 import NoIssuesError from '@components/NoIssuesError';
 import Pagination from '@components/Pagination';
 import GithubLogo from '@public/images/25231.png';
 import Image from 'next/image';
 import parseLinkHeader, { Links } from 'parse-link-header';
-import { Issue } from '@interfaces/issues';
+import { Issue, IssuesAdapted } from '@interfaces/issues';
 import { adaptIssues } from '@utils';
-import { RepoSearch } from '@interfaces/repos';
+import { RepoAdapted, RepoSearch } from '@interfaces/repos';
 import { getSession } from 'next-auth/react';
+import { Meta } from '@interfaces/pagination';
+
+interface Response {
+  issues?: IssuesAdapted[];
+  meta?: Meta;
+  error?: Error;
+}
+
+interface Error {
+  msg: string;
+  similar: Array<RepoAdapted>;
+}
 
 export default function IssuesPage({ issues, meta, error }: Response) {
   return (
