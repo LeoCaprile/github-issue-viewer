@@ -17,6 +17,7 @@ export interface Error {
 }
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Response>) {
   const { owner, repo, perPage, page } = req.query;
+
   try {
     const response = await fetch(
       `https://api.github.com/repos/${owner}/${repo}/issues?type=issues&per_page=${perPage}&page=${page ?? 1}`,

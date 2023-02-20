@@ -9,8 +9,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex justify-end bg-black px-5 py-2">
-      <div className="dropdown dropdown-end ">
+    <nav className="bg-transparent fixed flex justify-end w-full">
+      <div className="dropdown dropdown-end px-5 py-2">
         <label tabIndex={0} className="cursor-pointer bg-black">
           <Image
             className="rounded-full"
