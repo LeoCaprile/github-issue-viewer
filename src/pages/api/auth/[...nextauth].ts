@@ -2,7 +2,8 @@ import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 
 export const authOptions = {
-  site: process.env.NEXTAUTH_URL,
+  site:
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? process.env.NEXT_PUBLIC_VERCEL_URL : 'http://localhost:3000',
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID || '',
