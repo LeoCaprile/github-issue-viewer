@@ -9,12 +9,12 @@ interface FetchCommentsProps {
   issueId: number;
   owner: string | string[] | undefined;
   repo: string | string[] | undefined;
-  accessToken: string;
+  accessToken: string | undefined;
 }
 
 interface UseCommentsListProps {
   issueId: number;
-  accessToken: string;
+  accessToken: string | undefined;
 }
 
 interface InfiniteQueryProps {
@@ -43,7 +43,7 @@ const useCommentsList = ({ issueId, accessToken }: UseCommentsListProps) => {
     query: { owner, repo },
   } = useRouter();
   return useInfiniteQuery<InfiniteQueryProps, QueryKey>({
-    queryKey: ['projects'],
+    queryKey: ['projects', accessToken],
     queryFn: ({ pageParam }) => fetchComments({ issueId, pageParam, owner, repo, accessToken }),
     getNextPageParam: ({ nextPage }) => {
       if (nextPage) {

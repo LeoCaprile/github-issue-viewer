@@ -1,4 +1,5 @@
 import Comment from '@components/UI/Comment';
+import Spin from '@components/UI/Spin';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { useCommentsList } from 'src/hooks/useCommentList';
@@ -31,17 +32,12 @@ const CommentList = ({ issueId }: Props) => {
         />
       ))}
       <div className="flex flex-col justify-center">
-        {isLoading && (
-          <div
-            className="self-center mt-2 animate-spin w-8 h-8 border-b-transparent border-4 border-teal-700 rounded-full"
-            role="status"
-          />
-        )}
         {hasNextPage && (
           <button className="btn btn-outline mt-2" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
             {isFetchingNextPage ? 'Loading more...' : 'Load more comments'}
           </button>
         )}
+        {isLoading && <Spin />}
         {error && (
           <div className="alert alert-error shadow-lg">
             <div>

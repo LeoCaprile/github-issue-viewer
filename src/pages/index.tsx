@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 
 export default function Home() {
   const { data: session } = useSession();
-
   const router = useRouter();
 
   if (session) {

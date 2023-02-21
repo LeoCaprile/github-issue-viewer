@@ -37,7 +37,7 @@ export const adaptIssue = (issues: Issue): IssuesAdapted => ({
 });
 
 export const adaptIssues = (issues: Issue[]): IssuesAdapted[] =>
-  issues.map((issue) => ({
+  issues?.map((issue) => ({
     id: issue.number,
     title: issue.title,
     user: {
@@ -69,7 +69,7 @@ export const adaptIssues = (issues: Issue[]): IssuesAdapted[] =>
   }));
 
 export const adaptComments = (issues: Issue[]): CommentAdapted[] =>
-  issues.map((issue) => ({
+  issues?.map((issue) => ({
     id: issue.id,
     title: issue.title,
     user: {
