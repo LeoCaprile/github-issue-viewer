@@ -1,5 +1,5 @@
 export interface Meta {
-  prevPage: number | null;
+  prevPage: string | null;
   currentPage: number;
-  nextPage: number | null;
+  nextPage: string | null;
 }

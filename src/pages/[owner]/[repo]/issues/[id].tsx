@@ -8,7 +8,9 @@ import Reactions from '@components/UI/Reactions';
 import MarkDown from '@components/UI/MarkDown';
 import UserMetaData from '@components/UI/UserMetaData';
 import CommentList from '@components/CommentList';
-import { IssuesAdapted } from '@interfaces/issues';
+import { Issue, IssuesAdapted } from '@interfaces/issues';
+import { getSession } from 'next-auth/react';
+import { adaptIssue } from '@utils';
 dayjs.extend(relativeTime);
 interface Props {
   issue: IssuesAdapted;
@@ -26,34 +28,44 @@ export default function IssuePage({ issue }: Props) {
                 « Go back
               </button>
               <div className="flex gap-5">
-                <Reactions reactions={issue.reactions} />
+                <Reactions reactions={issue?.reactions} />
               </div>
             </div>
             <h1 className="lg:text-2xl sm:text-xl">
-              <strong>#{issue.id}</strong> <strong>{issue.title}</strong>
+              <strong>#{issue?.id}</strong> <strong>{issue?.title}</strong>
             </h1>
-            <UserMetaData username={issue.user.userName} date={issue.createdAt} />
-            <MarkDown body={issue.body}></MarkDown>
+            <UserMetaData username={issue?.user.userName} date={issue?.createdAt} />
+            <MarkDown body={issue?.body}></MarkDown>
           </div>
         </Card>
-        <CommentList issueId={issue.id}></CommentList>
+        <CommentList issueId={issue?.id}></CommentList>
       </div>
     </Container>
   );
 }
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const {
-    query: { owner, repo, id },
-  } = ctx;
+  const { owner, repo, id } = ctx.query;
+  const session = await getSession({ req: ctx.req });
+  try {
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${id}`, {
+      headers: { 'Authorization': `token ${session?.accessToken}` },
+    });
 
-  const url = process.env.LOCAL_API;
+    const issues: Issue = await response.json();
 
-  const res = await fetch(`${url}/api/github/${owner}/${repo}/issues/${id}`);
-  const issue = await res.json();
-  return {
-    props: {
-      ...issue,
-    },
-  };
+    return {
+      props: {
+        issue: adaptIssue(issues),
+      },
+    };
+  } catch {
+    return {
+      props: {
+        error: {
+          msg: 'Oops! Something went wrong :(',
+        },
+      },
+    };
+  }
 }
