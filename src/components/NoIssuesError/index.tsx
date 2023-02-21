@@ -1,7 +1,7 @@
 import SubTitle from '@components/UI/SubTitle';
+import { Error } from '@interfaces/error';
 import { adaptNameToQuery } from '@utils';
 import Link from 'next/link';
-import { Error } from 'src/pages/api/github/[owner]/[repo]/issues';
 interface Props {
   error: Error;
 }

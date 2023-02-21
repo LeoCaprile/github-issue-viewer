@@ -1,4 +1,6 @@
-export interface IssueError {
-  error?: string;
-  similar?: string[];
+import { RepoAdapted } from './repos';
+
+export interface Error {
+  msg: string;
+  similar: Array<RepoAdapted>;
 }

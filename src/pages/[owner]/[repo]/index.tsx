@@ -11,19 +11,15 @@ import Image from 'next/image';
 import parseLinkHeader, { Links } from 'parse-link-header';
 import { Issue, IssuesAdapted } from '@interfaces/issues';
 import { adaptIssues } from '@utils';
-import { RepoAdapted, RepoSearch } from '@interfaces/repos';
+import { RepoSearch } from '@interfaces/repos';
 import { getSession } from 'next-auth/react';
 import { Meta } from '@interfaces/pagination';
+import { Error } from '@interfaces/error';
 
 interface Response {
   issues?: IssuesAdapted[];
   meta?: Meta;
   error?: Error;
-}
-
-interface Error {
-  msg: string;
-  similar: Array<RepoAdapted>;
 }
 
 export default function IssuesPage({ issues, meta, error }: Response) {
