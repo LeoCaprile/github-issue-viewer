@@ -31,7 +31,7 @@ const Comment = ({ avatarUrl, body, createdAt, author, reactions, userName }: Pr
           <UserMetaData username={userName} date={createdAt} />
           <Reactions reactions={reactions} />
         </div>
-        <div className="p-2">
+        <div className="p-2 bg-gray-800">
           <MarkDown body={body} />
         </div>
       </div>

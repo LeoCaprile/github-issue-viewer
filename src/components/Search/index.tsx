@@ -46,7 +46,7 @@ export default function Search({ placeholder }: Props) {
         required
         pattern="[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+"
         name="query"
-        className="input input-bordered input-accent p-2 flex-1"
+        className="input input-bordered input-accent bg-slate-700 p-2 flex-1"
         placeholder={placeholder}
         type="search"
       />
